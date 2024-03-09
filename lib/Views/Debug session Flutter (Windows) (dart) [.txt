@@ -1,0 +1,3 @@
+Debug session Flutter (Windows) (dart) [3/6/2024, 2:17:11 PM]
+** [3/6/2024, 2:17:11 PM] - Stopping session Flutter (Windows)
+** [3/6/2024, 2:17:11 PM] - Erroring session Flutter (Windows): error.message=read error
