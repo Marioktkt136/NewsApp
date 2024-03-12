@@ -1,38 +1,63 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_app/Models/news_article_model.dart';
 
 class NewsTile extends StatelessWidget {
-  const NewsTile({super.key});
+  final NewsArticleModel articleModel;
+  const NewsTile({super.key, required this.articleModel});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(
-          'https://th.bing.com/th/id/R.941654eb58354f7a620394a587275183?rik=m3LcxVOWQoVCsg&pid=ImgRaw&r=0',
-          width: double.infinity,
-          fit: BoxFit.cover,
-          height: 200,
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
+        // Image.asset('assets/OIP.jpg'),
+        // ClipRRect(
+        //   borderRadius: BorderRadius.circular(6),
+        //   child:
+        // Image.network(
+        //     articleModel.image ??
+        //         'https://static.vecteezy.com/system/resources/previews/000/228/739/original/news-report-concept-background-design-vector.jpg',
+        //     width: double.infinity,
+        //     fit: BoxFit.cover,
+        //     height: 200,
+        //     loadingBuilder: (context, child, loadingProgress) {
+        //       if (loadingProgress == null) return child;
+        //       return Center(
+        //         child: CircularProgressIndicator(
+        //           value: loadingProgress.expectedTotalBytes != null
+        //               ? loadingProgress.cumulativeBytesLoaded /
+        //                   loadingProgress.expectedTotalBytes!
+        //               : null,
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ),
+
+        ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: CachedNetworkImage(
+            imageUrl: articleModel.image ??
+                'https://static.vecteezy.com/system/resources/previews/000/228/739/original/news-report-concept-background-design-vector.jpg',
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            width: double.infinity,
+            fit: BoxFit.fill,
+            height: 200,
+          ),
         ),
+
         Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          articleModel.title ?? '',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
         Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          articleModel.subtitle ?? '',
           style: TextStyle(
             fontSize: 17,
             color: Colors.grey,

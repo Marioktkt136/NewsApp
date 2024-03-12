@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_app/Models/news_article_model.dart';
+import 'package:news_app/Services/News_services.dart';
 import 'package:news_app/Widgets/categories_view.dart';
 import 'package:news_app/Widgets/news_list_view.dart';
-import 'package:news_app/Widgets/news_tiles.dart';
+import 'package:news_app/Widgets/news_list_view_builder.dart';
+// import 'package:news_app/Widgets/news_tiles.dart';
 // import 'package:news_app/Widgets/category_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,7 +52,7 @@ class HomePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: CategoriesListView(),
             ),
-            NewsListView(),
+            NewsListViewBuilder(),
           ],
         ),
       ),
