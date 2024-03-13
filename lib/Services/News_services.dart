@@ -7,23 +7,27 @@ class NewsServices {
 
   NewsServices(this.dio);
   Future<List<NewsArticleModel>> getNews() async {
-    var response = await dio.get(
-        'https://newsapi.org/v2/top-headlines?apikey=c271820e7cb5428bad2471cac367793a&country=us');
-    // ignore: unused_local_variable
-    Map<String, dynamic> jsonData = response.data;
-    List<dynamic> articles = jsonData['articles'];
-    // ignore: non_constant_identifier_names
-    List<NewsArticleModel> NewsArticleList = [];
+    try {
+      var response = await dio.get(
+          'https://newsapi.org/v2/top-headlines?apikey=c271820e7cb5428bad2471cac367793a&country=us');
+      // ignore: unused_local_variable
+      Map<String, dynamic> jsonData = response.data;
+      List<dynamic> articles = jsonData['articles'];
+      // ignore: non_constant_identifier_names
+      List<NewsArticleModel> NewsArticleList = [];
 
-    for (var article in articles) {
-      NewsArticleModel articleModel = NewsArticleModel(
-        author: article['author'],
-        image: article['urlToImage'],
-        title: article['title'],
-        subtitle: article['description'],
-      );
-      NewsArticleList.add(articleModel);
+      for (var article in articles) {
+        NewsArticleModel articleModel = NewsArticleModel(
+          author: article['author'],
+          image: article['urlToImage'],
+          title: article['title'],
+          subtitle: article['description'],
+        );
+        NewsArticleList.add(articleModel);
+      }
+      return NewsArticleList;
+    } on Exception catch (e) {
+      return [];
     }
-    return NewsArticleList;
   }
 }

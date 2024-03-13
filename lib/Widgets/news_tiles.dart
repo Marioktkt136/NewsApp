@@ -42,7 +42,11 @@ class NewsTile extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: articleModel.image ??
                 'https://static.vecteezy.com/system/resources/previews/000/228/739/original/news-report-concept-background-design-vector.jpg',
-            placeholder: (context, url) => CircularProgressIndicator(),
+            placeholder: (context, url) => Container(
+              height: 200,
+              width: 200,
+              child: CircularProgressIndicator(),
+            ),
             errorWidget: (context, url, error) => Icon(Icons.error),
             width: double.infinity,
             fit: BoxFit.fill,
@@ -52,7 +56,10 @@ class NewsTile extends StatelessWidget {
 
         Text(
           articleModel.title ?? '',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
