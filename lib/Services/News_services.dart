@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:news_app/Models/news_article_model.dart';
 
 class NewsServices {
@@ -26,6 +27,7 @@ class NewsServices {
       }
       return NewsArticleList;
     } on Exception catch (e) {
+      Text('database error');
       return [];
     }
   }
