@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/Widgets/categories_view.dart';
 import 'package:news_app/Widgets/news_list_view.dart';
-import 'package:news_app/Widgets/news_tiles.dart';
+// import 'package:news_app/Widgets/news_tiles.dart';
 // import 'package:news_app/Widgets/category_card.dart';
 
 class HomePage extends StatelessWidget {
