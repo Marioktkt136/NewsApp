@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(7.0),
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),
@@ -52,7 +52,9 @@ class HomePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: CategoriesListView(),
             ),
-            NewsListViewBuilder(),
+            NewsListViewBuilder(
+              category: 'general',
+            ),
           ],
         ),
       ),

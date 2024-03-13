@@ -9,9 +9,13 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return const CategoryView();
-        }));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return CategoryView(category: category.categoryName);
+            },
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 15),
